@@ -9,6 +9,11 @@ from sklearn.model_selection import train_test_split
 import random, pickle, os
 from collections import OrderedDict
 
+"""
+author: Wen Cui
+Date: Nov 5, 2017
+"""
+
 seed = 100
 random.seed(seed)
 
@@ -30,6 +35,11 @@ def load_data(file_name, testMode=False):
 
 
 def encode_label(labels):
+    """
+    Encode label as realDonaldTrump as 1, HillaryClinton as 0
+    :param labels: 
+    :return: 
+    """
     y = np.zeros(len(labels))
     for i, l in np.ndenumerate(labels):
         if l == 'realDonaldTrump':
@@ -75,6 +85,10 @@ def embedding_matrix(WORD_INDEX):
 
 
 def create_model():
+    """
+    Model has embedding layer + LSTM + 1 fully connected NN
+    :return: 
+    """
     print('Building model...')
     model = Sequential()
     embedding_layer = embedding_matrix(WORD_INDEX)
@@ -90,6 +104,13 @@ def create_model():
 
 
 def train_save_model(input_file, out_model_file, out_weight_file):
+    """
+    1 split for train and test model
+    :param input_file: 
+    :param out_model_file: 
+    :param out_weight_file: 
+    :return: 
+    """
     texts, labels = load_data(input_file)
     x_train, x_val, y_train, y_val = train_test_split(texts, labels, stratify=labels, test_size=0.2,
                                                        random_state=10)
@@ -116,6 +137,13 @@ def train_save_model(input_file, out_model_file, out_weight_file):
 
 
 def predict(saved_model, saved_weights, test_file):
+    """
+    Predict unlabeled data
+    :param saved_model: 
+    :param saved_weights: 
+    :param test_file: 
+    :return: 
+    """
     json_file = open(saved_model, 'r')
     loaded_model = json_file.read()
     json_file.close()
@@ -126,9 +154,6 @@ def predict(saved_model, saved_weights, test_file):
     print('Loaded model from disk.')
     x_test = load_data(test_file, testMode=True)
     x_test, _ = vectorize_text(x_test, tokenizer)
-
-    adam = Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
-    # model.compile(loss='binary_crossentropy', optimizer=adam, metrics=['accuracy'])
     y_pred = model.predict(x_test, batch_size=BATCH_SIZE)
     return y_pred
 
