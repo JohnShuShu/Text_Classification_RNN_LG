@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
-import rnn, data_helper
+import rnn, data_helper, os
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -44,11 +44,12 @@ if __name__ == '__main__':
     np.random.seed(10)
     input_file = '../data/train.csv'
     test_file = '../data/test.csv'
-    pretrained_model = '../data/glove.twitter.27B.100d.txt'
+    pretrained_model_dir = '../../glove.twitter.27B/'
+    pretrained_model = os.path.join(pretrained_model_dir, 'glove.twitter.27B.100d.txt')
     SPLIT = 0.2
 
     # Model parameters
-    PRETRAIN = False
+    PRETRAIN = True
     BIDIRECTIONAL = True
     NUM_CLASSES = 2
     BATCH_SIZE = 128
