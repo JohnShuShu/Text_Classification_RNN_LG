@@ -109,37 +109,37 @@ if __name__ == '__main__':
             print("Epoch %d\tTrain Loss: %.3f\tTrain Accuracy: %.3f"
                   % (current_epoch, curr_train_loss, curr_train_acc))
 
-            ax = plt.subplot(2, 2, 1)
-            ax.set_xlabel('batch numbers')
-            ax.set_ylabel('training loss')
-            ax.plot(train_loss_list, label='epoch%s' %(current_epoch))
-            ax.legend(loc='upper right', markerscale=0.2)
-            # ax.set_title('self-learn embedding 200 dimension')
-
-
-            ax = plt.subplot(2, 2, 2)
-            ax.set_xlabel('batch numbers')
-            ax.set_ylabel('training accuracy')
-            ax.plot(train_acc_list, label='epoch%s' % current_epoch)
-            ax.legend(loc='upper right', markerscale=0.2)
-
-            ax = plt.subplot(2, 2, 3)
-            ax.set_xlabel('batch numbers')
-            ax.set_ylabel('validation loss')
-            ax.plot(val_loss_list, label='epoch%s' % current_epoch)
-            ax.legend(loc='upper right', markerscale=0.2)
-
-            ax = plt.subplot(2, 2, 4)
-            ax.set_xlabel('batch numbers')
-            ax.set_ylabel('validation accuracy')
-            ax.plot(val_acc_list, label='epoch%s' % current_epoch)
-            ax.legend(loc='upper right',  markerscale=0.2)
-
+        #     ax = plt.subplot(2, 2, 1)
+        #     ax.set_xlabel('batch numbers')
+        #     ax.set_ylabel('training loss')
+        #     ax.plot(train_loss_list, label='epoch%s' %(current_epoch))
+        #     ax.legend(loc='upper right', markerscale=0.2)
+        #     # ax.set_title('self-learn embedding 200 dimension')
+        #
+        #
+        #     ax = plt.subplot(2, 2, 2)
+        #     ax.set_xlabel('batch numbers')
+        #     ax.set_ylabel('training accuracy')
+        #     ax.plot(train_acc_list, label='epoch%s' % current_epoch)
+        #     ax.legend(loc='upper right', markerscale=0.2)
+        #
+        #     ax = plt.subplot(2, 2, 3)
+        #     ax.set_xlabel('batch numbers')
+        #     ax.set_ylabel('validation loss')
+        #     ax.plot(val_loss_list, label='epoch%s' % current_epoch)
+        #     ax.legend(loc='upper right', markerscale=0.2)
+        #
+        #     ax = plt.subplot(2, 2, 4)
+        #     ax.set_xlabel('batch numbers')
+        #     ax.set_ylabel('validation accuracy')
+        #     ax.plot(val_acc_list, label='epoch%s' % current_epoch)
+        #     ax.legend(loc='upper right',  markerscale=0.2)
+        #
             current_epoch += 1
-
-        print('End of training.')
-
-        plt.show()
+        #
+        # print('End of training.')
+        #
+        # plt.show()
         # Run final model on test dataset
         # x_test_text = data_helper.load_tweets_label(test_file, trainMode=False)
         # x_test = np.array(list(vocab_processor.transform(x_test_text)))
